@@ -42,7 +42,7 @@ function Cart() {
         <p>Your cart is empty</p>
       ) : (
         <div className="cart-items">
-          {cartItems.map((item) => (
+          {cartItems.map((item) => ( 
             <div key={item.id} className="cart-item">
               <div className="cart-item-details">
                 <div className="cart-item-title">{item.title}</div>
