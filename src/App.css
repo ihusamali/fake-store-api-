@@ -1,38 +1,195 @@
-.App {
+body{
+  padding: 0;
+  margin: 0;
+}
+
+.navbar{
+  background-color: black;
+  color: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+}
+
+.search{
+  width: 90vw;
+  margin-top: 10px;
+  border-radius: 10px;
+  height: 18px;
+  padding: 5px;
+  text-align: center;
+  background-color: lightgray;
+}
+
+.title {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.loading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.products{
+  width: 100%;
+  min-height: 80vh;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  justify-content: center;
+  padding: 10px;
+ 
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.product-image{
+  width: 13vw;
+  height: 13vw;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.product-image:hover{
+  transform: scale(1.2);
+}
+
+.product-card{
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
+  padding: 0px 5px 0px 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 5px;
+  height: 25vw;
+}
+
+.product-description{
+  background-color: lightgrey;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 5px;
+  align-content: flex-start;
+  border-radius: 10px;
+}
+
+.product-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 13vw;
+  padding: 5px;
+}
+
+.product-price{
+  font-weight: 700;
+  padding: 5px;
+}
+
+.cart-input{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-gap: 70px;
+  margin-top: 10px;
+}
+
+.units {
+  border-radius: 10px;
+  height: 15px;
+  padding: 5px;
+  width: 100px;
+}
+
+.cart-button{
+  margin-left: 10px;
+  background-color: black;
+  color: whitesmoke;
+  border: 0;
+  border-radius: 10px;
+  height: 25px ;
+}
+
+/*---------------------------------------------------------------------------------------------*/
+
+.ProductPage{
+  padding: 20px;
+}
+
+.pp-title{
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.pp-body{
+  display: flex;
+}
+
+.pp-image{
+  width: 50vw;
+  height: 70vh;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.pp-description{
+display: flex;
+flex-direction: column;
+}
+
+.pp-units {
+  border-radius: 10px;
+  height: 15px;
+  padding: 5px;
+  width: 100px;
+  margin-left: 20px;
+}
+
+.pp-price{
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.pp-desc-body{
+
+  margin-bottom: 5px;
+}
+.pp-button {
+  margin-top: 20px;
+  margin-left: 10px;
+  background-color: black;
+  color: whitesmoke;
+  border: 0;
+  border-radius: 10px;
+  height: 35px;
+}
+
+.pp-button:active{
+  background-color: grey;
+}
+
+
+
+
+/*---------------------------------------------------------------------------------------------*/
+
+.footer {
+  background-color: black;
+  color: whitesmoke;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  height: 50px;
+  position: absolute;
+  width: 100%;
 }
