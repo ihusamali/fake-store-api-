@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
 import "../App.css";
 
-function Navbar() {
+function Navbar({ cart }) {
   const [search, setSearch] = useState("");
   const handleInputChange = (event) => {
     setSearch(event.target.value);
@@ -18,6 +19,11 @@ function Navbar() {
       ></input> */}
 
       <h1 className="title">EVen.</h1>
+
+      <Link to="/cart">
+        <FaShoppingCart className="cart-item-count" />
+        <span className="cart-item-count">{" : " + cart.length}</span>
+      </Link>
     </div>
   );
 }

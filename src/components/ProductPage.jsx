@@ -2,9 +2,12 @@ import "../App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function ProductPage({ productId }) {
-  const [product, setProduct] = useState(null);
+export default function ProductPage({ productId, addToCart }) {
   //   const [data, setData] = useState(null);
+
+  const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(0);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     axios({
@@ -17,6 +20,19 @@ export default function ProductPage({ productId }) {
       })
       .catch((e) => console.log(e));
   }, [productId]);
+
+  const handleQuantityChange = (event) => {
+    const value = event.target.value;
+    setQuantity(parseInt(value));
+  };
+
+  const handleAddToCart = () => {
+    if (quantity > 0) {
+      addToCart(product, quantity);
+    } else {
+      alert("Quantity should be more than 0");
+    }
+  };
 
   return (
     <>
@@ -35,9 +51,12 @@ export default function ProductPage({ productId }) {
                   className="pp-units"
                   placeholder="No. of units"
                   type="number"
+                  onChange={handleQuantityChange}
                 ></input>
               </div>
-              <button className="pp-button">Add to Cart</button>
+              <button className="pp-button" onClick={handleAddToCart}>
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>

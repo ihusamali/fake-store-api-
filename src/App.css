@@ -12,6 +12,14 @@ body{
   height: 70px;
 }
 
+
+.cart-item-count{
+text-decoration: none;
+margin-left: 20px;
+color: whitesmoke;
+}
+
+
 .search-container {
   display: flex;
   justify-content: center;

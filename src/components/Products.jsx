@@ -5,12 +5,16 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import ProductPage from "./ProductPage";
 
-function Products() {
+function Products({ addToCart }) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [cartItems, setCartItems] = useState({});
+
+  const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(0);
+  const [cart, setCart] = useState([]);
 
   function handleProductClick(product) {
     ProductPage(product);
@@ -38,28 +42,42 @@ function Products() {
     setSearchTerm(event.target.value);
   };
 
+  const handleQuantityChange = (event) => {
+    const value = event.target.value;
+    setQuantity(parseInt(value));
+  };
+
+  const handleAddToCart = (product) => {
+    if (quantity > 0) {
+      setProduct(product);
+      addToCart(product, quantity);
+    } else {
+      alert("Quantity should be more than 0");
+    }
+  };
+
   const filteredData =
     data &&
     data.filter((product) =>
       product.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-  const handleAddToCart = (product, units) => {
-    setCartItems((prevState) => {
-      const newCartItems = { ...prevState };
-      if (newCartItems[product.id]) {
-        newCartItems[product.id].units += units;
-      } else {
-        newCartItems[product.id] = { ...product, units };
-      }
-      return newCartItems;
-    });
-  };
+  // const handleAddToCart = (product, units) => {
+  //   setCartItems((prevState) => {
+  //     const newCartItems = { ...prevState };
+  //     if (newCartItems[product.id]) {
+  //       newCartItems[product.id].units += units;
+  //     } else {
+  //       newCartItems[product.id] = { ...product, units };
+  //     }
+  //     return newCartItems;
+  //   });
+  // };
 
   return (
     <div>
       {selectedProduct ? (
-        <ProductPage productId={selectedProduct.id} />
+        <ProductPage productId={selectedProduct.id} addToCart={addToCart} />
       ) : (
         <>
           <div className="search-container">
@@ -96,13 +114,13 @@ function Products() {
                         className="units"
                         placeholder="No. of units"
                         type="number"
-                        onChange={(e) =>
-                          handleAddToCart(product, parseInt(e.target.value))
-                        }
+                        onChange={handleQuantityChange}
                       ></input>
                       <button
                         className="cart-button"
-                        onClick={() => handleAddToCart(product, 1)}
+                        onClick={() => {
+                          handleAddToCart(product);
+                        }}
                       >
                         Add to Cart
                       </button>
